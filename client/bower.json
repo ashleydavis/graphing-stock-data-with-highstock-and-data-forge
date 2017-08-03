@@ -1,0 +1,27 @@
+{
+  "name": "highstock-yahoo-demo",
+  "homepage": "https://github.com/codecapers/highstock-yahoo-demo",
+  "authors": [
+    "Ashley Davis <ashley@codecapers.com.au>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "linqjs": "~3.0.5",
+    "chai": "~3.4.2",
+    "moment": "~2.10.6",
+    "data-forge-to-highstock": "0.0.17",
+    "data-forge": "^0.5.0",
+    "jquery": "^3.2.1"
+  }
+}
