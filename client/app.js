@@ -12,11 +12,6 @@ $(function() {
     //
     var curDataFrame = null;
 
-    //
-    // Used to suppress chart reload while resizing the chart.
-    //
-    var resizingChart = false;
-
 	//
 	// Generate a simple moving average time series from the input series.
 	//
@@ -119,33 +114,6 @@ $(function() {
     };
 
     //
-	// Convert the data-frame to Highstock date+value format.
-    ///
-    var dataFrameToHighstock = function (dataFrame) {
-
-        var self = this;
-
-        var it = dataFrame.getIterator();
-
-        var output = [];
-        while (it.moveNext()) {
-            var pair = it.getCurrent();
-            var index = pair[0];
-            var values = pair[1];
-            assert.instanceOf(index, Date, "Expected index to contain dates!");
-            var row = Enumerable.from(columnNames)
-                .select(function (columnName) {
-                    return values[columnName];
-                })
-                .toArray();
-            output.push([
-                index.getTime(),
-                row,
-            ]);
-        }
-    };
-
-    //
     // Convert the column to Highstock date+value format.
     //
     var seriesToHighstock = function (series) {
@@ -180,14 +148,8 @@ $(function() {
     // Resize the chart to fit the page.
     //
     var resizeChart = function () {
-        try {
-            resizingChart = true;
-            var chart = $('#container').highcharts();
-            chart.setSize($(window).width(), $(window).height()-50);            
-        }
-        finally {
-            resizingChart = false;
-        }
+        var chart = $('#container').highcharts();
+        chart.setSize($(window).width(), $(window).height()-50);            
     };
 
     //
@@ -256,7 +218,7 @@ $(function() {
                     color: 'red',
                     data: sma,
                     tooltip: {
-                        valueDecimals: 5
+                        valueDecimals: 2
                     }
                 },
                 {
